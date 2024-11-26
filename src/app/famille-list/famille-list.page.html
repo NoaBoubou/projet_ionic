@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Famille</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let membre of membres" [routerLink]="['/famille-detail', membre.id]">
+      <ion-avatar slot="start">
+        <img [src]="membre.photo" alt="{{ membre.prenom }} {{ membre.nom }}" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ membre.prenom }} {{ membre.nom }}</h2>
+        <p><strong>Âge :</strong> {{ membre.age }}</p>
+        <p><strong>Lien :</strong> {{ membre.lien }}</p>
+        <p><strong>Sexe :</strong> {{ membre.sexe }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
