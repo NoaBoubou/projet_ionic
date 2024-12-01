@@ -1,13 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>membre-new</ion-title>
+    <ion-title>Ajouter un nouveau membre</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">membre-new</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true"> 
+    <ion-item>
+      <ion-label position="floating">Prénom</ion-label>
+      <ion-input type="text" [(ngModel)]="membre.prenom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input type="text" [(ngModel)]="membre.nom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Âge</ion-label>
+      <ion-input type="number" [(ngModel)]="membre.age"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Lien</ion-label>
+      <ion-input type="text" [(ngModel)]="membre.lien"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Sexe</ion-label>
+      <ion-select [(ngModel)]="membre.sexe">
+        <ion-select-option value="Homme">Homme</ion-select-option>
+        <ion-select-option value="Femme">Femme</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Photo</ion-label>
+      <ion-input type="text" [(ngModel)]="membre.photo"></ion-input>
+    </ion-item>
+    <p class="text-center">
+      <ion-button (click)="add()">Ajouter</ion-button>
+    </p>  
 </ion-content>

@@ -17,6 +17,7 @@ export class FamilleListPage implements OnInit {
     this.familleService.getMembres().subscribe((data: Famille[]) => {
       this.membres = data; 
     });
+    console.log(this.membres);
   }
 
 }

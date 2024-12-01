@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('../famille-list/famille-list.module').then( m => m.FamilleListPageModule)
       },
       {
+        path: 'new',
+        loadChildren: () => import('../membre-new/membre-new.module').then( m => m.MembreNewPageModule)
+      },
+      {
         path: 'about',
         loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule)
       },

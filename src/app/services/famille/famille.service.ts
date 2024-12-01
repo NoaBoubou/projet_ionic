@@ -29,6 +29,28 @@ export class FamilleService {
     );
   }
 
+  newMembre(membre: Famille): any {
+    return new Observable((obs) => {
+      if (!membre.id) {
+        obs.error('L\'ID du membre est requis');
+        return;
+      }
+  
+      this.familleCollection
+        .doc(membre.id) // Utiliser membre.id comme ID du document
+        .set({ ...membre } as Famille) // Ajouter les données
+        .then(() => {
+          obs.next(); // Notifier que l'opération a réussi
+          obs.complete();
+        })
+        .catch((error) => {
+          obs.error(error); // Gérer les erreurs
+        });
+    });
+  }
+  
+
+
 
   get(id: any): any {
     return new Observable((obs) => {
