@@ -2,40 +2,101 @@
   <ion-toolbar>
     <ion-title>Détails du membre</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/famille"></ion-back-button>
+      <div *ngIf="!modif"><ion-back-button defaultHref="/famille"></ion-back-button></div>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="membre">
-  <!-- Carte avec l'image -->
-  <ion-card>
-    <ion-img [src]="membre.photo" alt="{{ membre.prenom }} {{ membre.nom }}" class="membre-photo"></ion-img>
-  </ion-card>
+  <!-- Affichage des détails si "modif" est false -->
+  <ng-container *ngIf="!modif">
+    <ion-card>
+      <ion-img [src]="membre.photo" alt="{{ membre.prenom }} {{ membre.nom }}" class="membre-photo"></ion-img>
+    </ion-card>
 
-  <!-- Carte avec les informations -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ membre.prenom }} {{ membre.nom }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>{{ membre.prenom }} est un <strong>{{ membre.sexe }}</strong> de <strong>{{ membre.age }}</strong> ans. </p>
-      <p *ngIf="membre.sexe == 'Homme'">C'est ton <strong>{{ membre.lien }}</strong></p>
-      <p *ngIf="membre.sexe == 'Femme'">C'est ta <strong>{{ membre.lien }}</strong></p>
-    </ion-card-content>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button color="danger" (click)="onDelete(membre.id)">
-          <ion-icon slot="start" name="trash-outline"></ion-icon>
-          Supprimer
-        </ion-button>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-button color="primary" (click)="onModif()">
-          <ion-icon slot="start" name="create-outline"></ion-icon>
-          Modifier
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ membre.prenom }} {{ membre.nom }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ membre.prenom }} est un <strong>{{ membre.sexe }}</strong> de <strong>{{ membre.age }}</strong> ans.</p>
+        <p *ngIf="membre.sexe == 'Homme'">C'est ton <strong>{{ membre.lien }}.</strong></p>
+        <p *ngIf="membre.sexe == 'Femme'">C'est ta <strong>{{ membre.lien }}.</strong></p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Boutons d'action -->
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="danger" (click)="onDelete(membre.id)">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            Supprimer
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="setModif()">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            Modifier
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-container>
+
+  <!-- Formulaire de modification si "modif" est true -->
+  <ng-container *ngIf="modif">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Modifier le membre</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Prénom</ion-label>
+          <ion-input type="text" [(ngModel)]="membre.prenom"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input type="text" [(ngModel)]="membre.nom"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Âge</ion-label>
+          <ion-input type="number" [(ngModel)]="membre.age"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Lien</ion-label>
+          <ion-input type="text" [(ngModel)]="membre.lien"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Sexe</ion-label>
+          <ion-select [(ngModel)]="membre.sexe">
+            <ion-select-option value="Homme">Homme</ion-select-option>
+            <ion-select-option value="Femme">Femme</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Photo</ion-label>
+          <ion-input type="text" [(ngModel)]="membre.photo"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Boutons pour annuler ou valider -->
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="danger" (click)="onCancel()">
+            <ion-icon slot="start" name="close-outline"></ion-icon>
+            Annuler
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="onModif()">
+            <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+            Valider
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-container>
 </ion-content>

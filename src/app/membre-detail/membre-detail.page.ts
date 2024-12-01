@@ -34,7 +34,7 @@ export class MembreDetailPage implements OnInit {
 
   async setModif() {
     if(!this.modif) {
-      const alert = await this.alertCtrl.create({
+/*       const alert = await this.alertCtrl.create({
         header : 'Etes vous sur de vouloir modifier ?',
         subHeader: 'Vous rendrez possible la modification',
         buttons : [
@@ -48,7 +48,7 @@ export class MembreDetailPage implements OnInit {
         ]
       });
       await alert.present();
-    } else {
+    } else { */
       this.modif = !this.modif;
     }
   }
@@ -61,6 +61,7 @@ export class MembreDetailPage implements OnInit {
     (await toast).present();
   }
 
+
   onModif() {
     this.familleService.update(this.membre).subscribe(() => {
       this.presentToast();
@@ -68,10 +69,31 @@ export class MembreDetailPage implements OnInit {
     });
   }
 
-  onDelete(id: any) {
-    this.familleService.delete(id);
-    this.router.navigate(['/famille']);
-  } 
+  onCancel() {
+    this.modif = false;
+  }
+
+  async onDelete(id: any) {
+    console.log('ID à supprimer:', id); // Vérifie la valeur de l'ID
+    const alert = await this.alertCtrl.create({
+      header: 'Êtes-vous sûr de vouloir supprimer ?',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'Cancel',
+        },
+        {
+          text: 'Supprimer',
+          handler: () => {
+            this.familleService.delete(id);
+            this.router.navigate(['/famille']);
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+  
 
 
 }

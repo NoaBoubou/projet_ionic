@@ -1,4 +1,7 @@
 export class Famille {
+    update(membre: Famille) {
+      throw new Error('Method not implemented.');
+    }
     get(id: string | null) {
       throw new Error('Method not implemented.');
     }

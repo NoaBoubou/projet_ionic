@@ -50,10 +50,19 @@ export class FamilleService {
       obs.next();
     });
   }
-
+/* 
   delete(id: any) {
-    this.db.doc(`famille-detail/${id}`).delete();
-  }
+    this.db.doc(`famille/${id}`).delete();
+  } */
 
+  async delete(id: any) {
+    try {
+      console.log("id de la fonction delete", id);
+      await this.db.doc(`famille/${id}`).delete();
+      console.log('Document supprimé avec succès');
+    } catch (error) {
+      console.error('Erreur lors de la suppression du document :', error);
+    }
+  } 
 
 }
