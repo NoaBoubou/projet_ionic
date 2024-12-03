@@ -1,20 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Qui c'est ?
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <p>
+    Tu ne te souviens plus d'un membre de ta famille ?
+    Pas de problèmes, prends une photo et l'IA te dira qui c'est ! <ion-icon name="happy-outline"></ion-icon>
+  </p>
+  <div *ngIf="imageSrc">
+  <ion-img [src]="imageSrc" alt="captured image" />
   </div>
+  <ion-button expand="full" (click)="captureImage()">Prendre une photo</ion-button>
+  <ion-button expand="full" (click)="analyzeImage()" [disabled]="!imageSrc">Analyser l'image</ion-button>
+  <ion-list *ngIf="results.length > 0">
+    <ion-item *ngFor="let result of results">
+      <p>C'est {{ result.class }}  ! Enfin, on en est sûr à {{ (result.score * 100) | number: '1.0-2' }}%</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
