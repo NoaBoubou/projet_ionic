@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import * as tf from '@tensorflow/tfjs';
 
@@ -9,8 +9,8 @@ import * as tf from '@tensorflow/tfjs';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  imageSrc: string | null = null; // Image capturée
-  results: { class: string; score: number }[] = []; // Résultats de détection
+  imageSrc: string | null = null;
+  results: { class: string; score: number }[] = []; 
 
   constructor() {
     tf.ready().then(() => console.log('TensorFlow Ready'));
@@ -19,12 +19,13 @@ export class HomePage {
   async captureImage() {
     try {
       const photo = await Camera.getPhoto({
-        quality: 90,
+        quality: 100,
         allowEditing: false,
-        resultType: CameraResultType.DataUrl, // Retourne une base64
+        source: CameraSource.Camera,
+        resultType: CameraResultType.DataUrl, 
       });
 
-      this.imageSrc = photo.dataUrl || null; // Définit l'image capturée
+      this.imageSrc = photo.dataUrl || null; 
     } catch (error) {
       console.error('Erreur caméra :', error);
     }

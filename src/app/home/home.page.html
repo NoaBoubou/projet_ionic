@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <p>
     Tu ne te souviens plus d'un membre de ta famille ?
-    Pas de problèmes, prends une photo et l'IA te dira qui c'est ! <ion-icon name="happy-outline"></ion-icon>
+    Pas de problèmes, prends le en photo et l'IA te dira qui c'est ! <ion-icon name="happy-outline"></ion-icon>
   </p>
   <div *ngIf="imageSrc">
   <ion-img [src]="imageSrc" alt="captured image" />
@@ -18,7 +18,8 @@
   <ion-button expand="full" (click)="analyzeImage()" [disabled]="!imageSrc">Analyser l'image</ion-button>
   <ion-list *ngIf="results.length > 0">
     <ion-item *ngFor="let result of results">
-      <p>C'est {{ result.class }}  ! Enfin, on en est sûr à {{ (result.score * 100) | number: '1.0-2' }}%</p>
+      <p *ngIf=" result.class == 'unknown'" >On ne sait pas qui c'est.</p>
+      <p *ngIf=" result.class != 'unknown'">C'est {{ result.class }}  ! Enfin, on en est sûr à {{ (result.score * 100) | number: '1.0-2' }}%</p>
     </ion-item>
   </ion-list>
 </ion-content>

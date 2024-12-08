@@ -19,9 +19,24 @@
         <ion-card-title>{{ membre.prenom }} {{ membre.nom }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>{{ membre.prenom }} est un <strong>{{ membre.sexe }}</strong> de <strong>{{ membre.age }}</strong> ans.</p>
-        <p *ngIf="membre.sexe == 'Homme'">C'est ton <strong>{{ membre.lien }}.</strong></p>
-        <p *ngIf="membre.sexe == 'Femme'">C'est ta <strong>{{ membre.lien }}.</strong></p>
+        <section *ngIf="membre.sexe == 'Homme'"> 
+          <p>{{ membre.prenom }} est un <strong>{{ membre.sexe }}</strong> de <strong>{{ membre.age }}</strong> ans.</p>
+          <p>C'est ton <strong>{{ membre.lien }}</strong>.</p>
+          <p>Il habite à <strong>{{membre.ville}}</strong>.</p>
+          <p>Tu peux le contacter au <strong>{{membre.telephone}}</strong>.</p>
+        </section>
+        <section *ngIf="membre.sexe == 'Femme'"> 
+          <p>{{ membre.prenom }} est une <strong>{{ membre.sexe }}</strong> de <strong>{{ membre.age }}</strong> ans.</p>
+          <p>C'est ta <strong>{{ membre.lien }}</strong>.</p>
+          <p>Elle habite à <strong>{{membre.ville}}</strong>.</p>
+          <p>Tu peux la contacter au <strong>{{membre.telephone}}</strong>.</p>
+        </section>
+        <section *ngIf="membre.sexe != 'Femme' && membre.sexe != 'Homme'"> 
+          <p>{{ membre.prenom }} est un.e <strong>{{ membre.sexe }}</strong> de <strong>{{ membre.age }}</strong> ans.</p>
+          <p>C'est ton/ta <strong>{{ membre.lien }}</strong>.</p>
+          <p>Iel habite à <strong>{{membre.ville}}</strong>.</p>
+          <p>Tu peux le/la contacter au <strong>{{membre.telephone}}</strong>.</p>
+        </section>
       </ion-card-content>
     </ion-card>
 

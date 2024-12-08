@@ -12,6 +12,8 @@ export class Famille {
     sexe : string;
     lien : string;
     photo : string;
+    telephone : string;
+    ville : string;
 
     constructor(){
         this.nom = "";
@@ -20,6 +22,8 @@ export class Famille {
         this.sexe = "";
         this.lien = "";
         this.photo = "";
+        this.telephone ="";
+        this.ville = "";
     }
 }
 
