@@ -1,25 +1,40 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Qui c'est ?
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Qui c'est ?</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <p>
-    Tu ne te souviens plus d'un membre de ta famille ?
-    Pas de problèmes, prends le en photo et l'IA te dira qui c'est ! <ion-icon name="happy-outline"></ion-icon>
-  </p>
-  <div *ngIf="imageSrc">
-  <ion-img [src]="imageSrc" alt="captured image" />
+<ion-content [fullscreen]="true" class="ion-padding about-page">
+  <div class="intro-text">
+    <p>
+      Tu ne te souviens plus d'un membre de ta famille ? <br />
+      Pas de problèmes, prends-le en photo et l'IA te dira qui c'est ! 😊
+    </p>
   </div>
-  <ion-button expand="full" (click)="captureImage()">Prendre une photo</ion-button>
-  <ion-button expand="full" (click)="analyzeImage()" [disabled]="!imageSrc">Analyser l'image</ion-button>
-  <ion-list *ngIf="results.length > 0">
-    <ion-item *ngFor="let result of results">
-      <p *ngIf=" result.class == 'unknown'" >On ne sait pas qui c'est.</p>
-      <p *ngIf=" result.class != 'unknown'">C'est {{ result.class }}  ! Enfin, on en est sûr à {{ (result.score * 100) | number: '1.0-2' }}%</p>
+
+  <div class="image-container" *ngIf="imageSrc">
+    <ion-img [src]="imageSrc" alt="captured image"></ion-img>
+  </div>
+
+  <div class="button-group">
+    <ion-button expand="block" shape="round" color="secondary" (click)="captureImage()">
+      <ion-icon name="camera-outline" slot="start"></ion-icon>
+      Prendre une photo
+    </ion-button>
+    <ion-button expand="block" shape="round" color="success" (click)="analyzeImage()" [disabled]="!imageSrc">
+      <ion-icon name="search-outline" slot="start"></ion-icon>
+      Analyser l'image
+    </ion-button>
+  </div>
+
+  <ion-list class="result-list" *ngIf="results.length > 0">
+    <ion-item *ngFor="let result of results" class="result-item">
+      <ion-icon name="person-circle-outline" slot="start" color="primary"></ion-icon>
+      <p *ngIf="result.class == 'unknown'" class="unknown-result">On ne sait pas qui c'est.</p>
+      <p *ngIf="result.class != 'unknown'" class="known-result">
+        C'est <strong>{{ result.class }}</strong> ! Enfin, on en est sûr à
+        <strong>{{ (result.score * 100) | number: '1.0-2' }}%</strong>.
+      </p>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,46 +1,71 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Ajouter un nouveau membre</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Ajouter un nouveau membre</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> 
-    <ion-item>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="form-container">
+
+    <ion-item class="custom-item">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
       <ion-label position="floating">Prénom</ion-label>
       <ion-input type="text" [(ngModel)]="membre.prenom"></ion-input>
     </ion-item>
-    <ion-item>
+
+
+    <ion-item class="custom-item">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
       <ion-label position="floating">Nom</ion-label>
       <ion-input type="text" [(ngModel)]="membre.nom"></ion-input>
     </ion-item>
-    <ion-item>
+
+    <ion-item class="custom-item">
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
       <ion-label position="floating">Âge</ion-label>
       <ion-input type="number" [(ngModel)]="membre.age"></ion-input>
     </ion-item>
-    <ion-item>
+
+    <ion-item class="custom-item">
+      <ion-icon name="link-outline" slot="start"></ion-icon>
       <ion-label position="floating">Lien</ion-label>
       <ion-input type="text" [(ngModel)]="membre.lien"></ion-input>
     </ion-item>
-    <ion-item>
+
+
+    <ion-item class="custom-item">
+      <ion-icon name="location-outline" slot="start"></ion-icon>
       <ion-label position="floating">Ville</ion-label>
       <ion-input type="text" [(ngModel)]="membre.ville"></ion-input>
     </ion-item>
-    <ion-item>
+
+    <ion-item class="custom-item">
+      <ion-icon name="call-outline" slot="start"></ion-icon>
       <ion-label position="floating">Téléphone</ion-label>
-      <ion-input type="text" [(ngModel)]="membre.telephone"></ion-input>
+      <ion-input type="tel" [(ngModel)]="membre.telephone"></ion-input>
     </ion-item>
-    <ion-item>
+
+    <!-- Sexe -->
+    <ion-item class="custom-item">
+      <ion-icon name="male-female-outline" slot="start"></ion-icon>
       <ion-label position="floating">Sexe</ion-label>
-      <ion-select [(ngModel)]="membre.sexe">
+      <ion-select [(ngModel)]="membre.sexe" interface="popover">
         <ion-select-option value="Homme">Homme</ion-select-option>
         <ion-select-option value="Femme">Femme</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item>
+
+    <ion-item class="custom-item">
+      <ion-icon name="camera-outline" slot="start"></ion-icon>
       <ion-label position="floating">Photo</ion-label>
-      <ion-input type="text" [(ngModel)]="membre.photo"></ion-input>
+      <ion-input type="url" placeholder="Lien de la photo" [(ngModel)]="membre.photo"></ion-input>
     </ion-item>
-    <p class="text-center">
-      <ion-button (click)="add()">Ajouter</ion-button>
-    </p>  
+
+    <div class="ion-text-center ion-margin-top">
+      <ion-button expand="block" color="success" shape="round" (click)="add()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Ajouter le membre
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

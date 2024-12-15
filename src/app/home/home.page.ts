@@ -10,7 +10,7 @@ import * as tf from '@tensorflow/tfjs';
 })
 export class HomePage {
   imageSrc: string | null = null;
-  results: { class: string; score: number }[] = []; 
+  results: { class: string; score: number }[] = [];
 
   constructor() {
     tf.ready().then(() => console.log('TensorFlow Ready'));
@@ -18,16 +18,33 @@ export class HomePage {
 
   async captureImage() {
     try {
+      const cameraAvailable = await this.isCameraAvailable();
+
       const photo = await Camera.getPhoto({
         quality: 100,
         allowEditing: false,
-        source: CameraSource.Camera,
-        resultType: CameraResultType.DataUrl, 
+        source: cameraAvailable ? CameraSource.Camera : CameraSource.Photos, 
+        resultType: CameraResultType.DataUrl,
       });
 
       this.imageSrc = photo.dataUrl || null; 
     } catch (error) {
-      console.error('Erreur caméra :', error);
+      console.error('Erreur :', error);
+    }
+  }
+
+
+  private async isCameraAvailable(): Promise<boolean> {
+    try {
+      const status = await Camera.checkPermissions();
+      if (!status.camera) {
+        const permission = await Camera.requestPermissions();
+        return permission.camera === 'granted';
+      }
+      return true;
+    } catch (error) {
+      console.error('Erreur :', error);
+      return false;
     }
   }
 
@@ -47,7 +64,7 @@ export class HomePage {
         }));
       };
     } catch (error) {
-      console.error('Erreur d\'analyse :', error);
+      console.error('Erreur d\'analyse de l\'image :', error);
     }
   }
 }

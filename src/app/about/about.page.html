@@ -1,14 +1,52 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>A propos</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">À propos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding about-page">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">about</ion-title>
+      <ion-title size="large">À propos</ion-title>
     </ion-toolbar>
   </ion-header>
-  <p>Application te permettant d'enregistrer tous les membres de ta famille. </p>
+
+  <section class="intro-section">
+    <h2>📸 Une mémoire (presque) infaillible !</h2>
+    <p>
+      Tu es du genre à oublier le prénom de ton cousin éloigné ou à confondre tonton Gérard avec papi Robert ? <br />
+      Pas de panique, <strong>cette application est là pour t'aider !</strong>
+    </p>
+  </section>
+
+  <section class="feature-section">
+    <h2>🧑‍🤝‍🧑 Reconnaître & recenser les membres de ta famille</h2>
+    <p>
+      Grâce à <strong>l'intelligence artificielle</strong> et ses nombreuses fonctionnalités, cette app te permet :
+    </p>
+    <ul>
+      <li>De <strong>recenser</strong> tous les membres de ta famille (nom, prénom, âge, etc.).</li>
+      <li>De <strong>retrouver</strong> facilement chaque membre grâce à une liste complète.</li>
+      <li>De <strong>reconnaître</strong> un membre via une simple photo. L'IA te dira qui c'est en un instant ! 🎉</li>
+      <li>
+        D'<strong>ajouter</strong>, <strong>modifier</strong> ou <strong>supprimer</strong> les informations d'un membre
+        pour que la liste soit toujours à jour.
+      </li>
+    </ul>
+  </section>
+
+  <section class="why-section">
+    <h2>🚀 Pourquoi utiliser cette application ?</h2>
+    <p>
+      Que ce soit pour impressionner ta famille lors du prochain repas de Noël ou pour éviter un moment de solitude... <br />
+      Cette application est ton meilleur allié pour <strong>ne plus oublier personne</strong> et garder une liste
+      toujours à jour ! 😉
+    </p>
+  </section>
+
+  <ion-footer>
+    <ion-toolbar color="light">
+      <p class="footer-text">Développée avec ❤️ pour une famille soudée !</p>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
