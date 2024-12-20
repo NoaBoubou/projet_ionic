@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Détails du membre</ion-title>
+    <ion-title *ngIf="!modif">Détails du membre</ion-title>
+    <ion-title *ngIf="modif">Modification du membre</ion-title>
     <ion-buttons slot="start">
       <div *ngIf="!modif"><ion-back-button defaultHref="/famille"></ion-back-button></div>
     </ion-buttons>
@@ -92,6 +93,14 @@
         <ion-item>
           <ion-label position="floating">Photo</ion-label>
           <ion-input type="text" [(ngModel)]="membre.photo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Ville</ion-label>
+          <ion-input type="text" [(ngModel)]="membre.ville"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Téléphone</ion-label>
+          <ion-input type="tel" [(ngModel)]="membre.telephone"></ion-input>
         </ion-item>
       </ion-card-content>
     </ion-card>
